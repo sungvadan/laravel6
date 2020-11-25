@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+    nginx:
+        build:
+            context: ./docker/nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+            - ./:/var/www
+        links:
+            - php
+        networks:
+            - laravel
+    mysql:
+        image: 'mysql:5.7'
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_DATABASE=laravel
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - ./.data_mysql:/var/lib/mysql
+        networks:
+            - laravel
+    php:
+        build:
+            context: ./docker/php
+        expose:
+            - "9000"
+        volumes:
+            - ./:/var/www:cached
+            - ~/.ssh:/root/.ssh
+        links:
+            - mysql
+        networks:
+            - laravel
+networks:
+    laravel:
+        driver: bridge
