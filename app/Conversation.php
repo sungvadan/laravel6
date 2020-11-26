@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property-read User $user
+ */
 class Conversation extends Model
 {
     public function replies()

@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property-read Conversation $conversation
+ */
 class Reply extends Model
 {
     public function isBestReply()

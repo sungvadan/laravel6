@@ -1,0 +1,19 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+
+    # The level 8 is the highest level
+    level: 5
+
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Support\\HigherOrder#'
+        - '#Access to an undefined property Illuminate\\Support\\HigherOrder#'
+
+    excludes_analyse:
+        - ./*/*/FileToBeExcluded.php
+
+    checkMissingIterableValueType: false

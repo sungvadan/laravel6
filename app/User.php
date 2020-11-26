@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property-read Collection<Role> $roles
+ * @property-read Collection<DatabaseNotification> $unreadNotifications
+ */
 class User extends Authenticatable
 {
     use Notifiable;
