@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
 
+Route::get('/stream/{video}', function ($videos, \Illuminate\Contracts\Auth\Guard $guard) {
+    if ($guard->user()) {
+        return '';
+    } else {
+        return new \Illuminate\Http\Response('', 401);
+    }
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')
